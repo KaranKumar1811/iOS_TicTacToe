@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var activeGame = true
     
     var activePlayer = 1
     
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
         print(sender.tag)
         
         let activePostion = sender.tag - 1
-        if gameState[activePostion] == 0 {
+        if gameState[activePostion] == 0 && activeGame {
             gameState[activePostion] = activePlayer
             if activePlayer == 1{
                 sender.setImage(UIImage(named: "nought.png"),for: [])
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
         for combination in winningCombination{
             if gameState[combination[0]] != 0 && gameState[combination[1]] == gameState[combination[2]] && gameState[combination[2]] == gameState[combination[0]]
             {
-             
+             activeGame = false
                 if gameState[combination[0]] == 1 {
                     print("Winner is nought")
                 }
